@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol : MonoBehaviour
+public class Patrol : Enemy
 {
     public Transform[] patrolPoints;
     public float speed;
@@ -11,7 +11,6 @@ public class Patrol : MonoBehaviour
     float waitTime;
     public float startWaitTime;
 
-    public int damage;
 
     // Start is called before the first frame update
     void Start()
@@ -47,14 +46,6 @@ public class Patrol : MonoBehaviour
             {
                 waitTime -= Time.deltaTime;
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Player")
-        {
-            collision.GetComponent<Player>().TakeDamage(damage);
         }
     }
 }

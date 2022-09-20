@@ -223,6 +223,7 @@ MonoBehaviour:
   xWallForce: 15
   yWallForce: 30
   wallJumpTime: 0.05
+  health: 0
 --- !u!95 &2046650513
 Animator:
   serializedVersion: 4
