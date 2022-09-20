@@ -11,10 +11,13 @@ public class Patrol : MonoBehaviour
     float waitTime;
     public float startWaitTime;
 
+    public int damage;
+
     // Start is called before the first frame update
     void Start()
     {
         transform.position = patrolPoints[0].position;
+        transform.rotation = patrolPoints[0].rotation;
         waitTime = startWaitTime;
 
     }
@@ -24,8 +27,9 @@ public class Patrol : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, patrolPoints[currentPointIndex].position, speed * Time.deltaTime);
 
-        if(transform.position == patrolPoints[currentPointIndex].position)
+        if (transform.position == patrolPoints[currentPointIndex].position)
         {
+            transform.rotation = patrolPoints[currentPointIndex].rotation;
             if (waitTime <= 0)
             {
                 if (currentPointIndex + 1 < patrolPoints.Length)
@@ -43,9 +47,14 @@ public class Patrol : MonoBehaviour
             {
                 waitTime -= Time.deltaTime;
             }
+        }
+    }
 
-           
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            collision.GetComponent<Player>().TakeDamage(damage);
         }
     }
 }
