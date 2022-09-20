@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         }
         else if (input < 0 && facingRight == true)
         {
-            Flip();
+           Flip();
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         facingRight = !facingRight;
+        print("flip");
     }
 
     void SetWallJumpingToFalse()
